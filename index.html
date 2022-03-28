@@ -1,0 +1,295 @@
+<html>
+    <head>
+        <title>Table</title>
+        <style>
+
+
+            body {
+              margin: 0;
+              padding: 0;
+              font-family:Arial ;
+              background-image: url('http://futurecitymc.com/wp-content/uploads/2022/03/BG-1.png');
+            }
+            #container {
+              width: 100%;
+              height: 100vh;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            button {
+              position: relative;
+              cursor: pointer;
+              border: none;
+              outline: none;
+              background: none;
+              color: #40ddee;
+              font-size: 24px;
+              letter-spacing: 4px;
+              padding: 2px 23px;
+              overflow: hidden;
+            }
+            button span {
+              position: absolute;
+            }
+            button span:nth-child(1) {
+                bottom: 0;
+                left: -100%;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, #fb0094, #00f,#0f0,#ff0,#f00,
+                #fb0094, #00f,#0f0,#ff0,#f00);
+              }
+              button span:nth-child(2) {
+                bottom: -100%;
+                right: 0;
+                width: 1px;
+                height: 100%;
+                background: linear-gradient(0deg, #fb0094, #00f,#0f0,#ff0,#f00,
+                #fb0094, #00f,#0f0,#ff0,#f00);
+              }
+              button span:nth-child(3) {
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(-90deg, #fb0094, #00f,#0f0,#ff0,#f00,
+                 #fb0094, #00f,#0f0,#ff0,#f00);
+              }
+              button span:nth-child(4) {
+                top: -100%;
+                left: 0;
+                width: 1px;
+                height: 100%;
+                background: linear-gradient(180deg, #fb0094, #00f,#0f0,#ff0,#f00,
+                #fb0094, #00f,#0f0,#ff0,#f00);
+              }
+            button:hover {
+              color: #000;
+              box-shadow: 0 0 10px #40ddee,
+                          0 0 40px #40ddee,
+                          0 0 80px #40ddee;
+              background: #40ddee;
+              transition-delay: 1s;
+            }
+            button:hover span:nth-child(1) {
+                animation: leftLine .6s linear 0s;
+            }
+            button:hover span:nth-child(2) {
+                animation: bottomLine .6s linear .25s;
+            }
+            button:hover span:nth-child(3) {
+                animation: rightLine .6s linear 0s;
+            }
+            button:hover span:nth-child(4) {
+                animation: topLine .6s linear .25s;
+            }
+            @keyframes topLine {
+                0% {
+                  top: -100%;
+                }
+                100% {
+                  top: 100%;
+                }
+            }
+            @keyframes bottomLine {
+                0% {
+                  bottom: -100%;
+                }
+                100% {
+                  bottom: 100%;
+                }
+            }
+            @keyframes rightLine {
+                0% {
+                  right: -100%;
+                }
+                100% {
+                  right: 100%;
+                }
+            }
+            @keyframes leftLine {
+                0% {
+                  left: -100%;
+                }
+                100% {
+                  left: 100%;
+                }
+            }
+
+            table, th, td {
+                border:2px solid #1b6378;
+              }
+
+
+
+
+              .styled-table {
+                border-collapse: collapse;
+                margin: 25px 0;
+                font-family:Arial;
+                font-size: 0.7.5em;
+             
+                min-width: 400px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            }
+            .styled-table thead tr {
+                background-color: #009879;
+                color: #ffffff;
+                text-align: left;
+            }
+
+            .styled-table th,
+            .styled-table td {
+                padding: 12px 15px;
+            }
+            .styled-table td a {
+                font-family:Arial;
+				text-decoration: none;
+				pointer-events: none;         
+				font-weight: bold;
+				color: #009879;
+				}
+            .styled-table tbody tr {
+                font-family:Arial;
+                border-bottom: 1px solid #dddddd;
+            }
+
+            .styled-table  td{
+                font-family:Arial;
+                background-color: #ffffff;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+            }
+
+
+            h1 {
+                margin:20px;
+                text-align:center;
+                
+                color: #2acef7;
+                font-size: 35px;
+                transition: 0.5s;
+                font-family: montserat;
+            }
+        
+         h1:hover {
+              text-shadow: 3px 3px 0 var(--color-secondary), 6px 6px 0 var(--color-tertiary),
+            9px 9px var(--color-quaternary), 12px 12px 0 var(--color-quinary);
+          font-family: bungee, sans-serif;
+          font-weight: 100;
+         
+          font-size: 60px;
+          text-align: center;
+          margin: 0;
+          color: #5FB8FE;
+         
+        
+            }
+            #myInput {
+				
+					
+                font-size: 16px; 
+                padding: 12px 20px 12px 40px; 
+                border: 4px solid #55ffdd; 
+                display:block;
+                margin: auto;
+                margin-top:15px;
+                text-align:center;
+                align-items:center;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <h1>Registered Players</h1>
+        <div id="container">
+           
+            <button>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Players..">
+
+                <table id="employees" class="styled-table"><script>
+                    const api_url =
+                        "http://139.99.119.241:2057/v1/players"
+                    
+                    async function getapi(url) {
+                        
+                        const response = await fetch("http://139.99.119.241:2057/v1/players")
+                        
+                        var data = await response.json()
+                        console.log(data)
+                        if (response) {
+                            hideloader();
+                        }
+                        show(data);
+                    }
+                    getapi(api_url);
+                    
+                    function hideloader() {
+                        document.getElementById('loading')
+                    }
+                    function show(data) {
+                        let tab =
+                            `<thead>
+                        
+                            <tr>
+                            <th>Name</th>
+                            <th>playtime</th>
+                            <th>Last seen</th>
+                            
+                        
+                            </tr></thead>`;
+                        
+                        for (let r of data.data) {
+                            tab += `<tbody><tr>
+                        <td>${r.name} </td>
+                        <td>${r.activePlaytime.d}</td>
+                        <td>${r.seen.d}</td>
+                       
+                    
+                        </tr></tbody>`;
+                        }
+                        console.log(data)
+                        document.getElementById("employees").innerHTML = tab;
+                    }
+                    
+                    function myFunction() {
+                      var input, filter, table, tr, td, i, txtValue;
+                      input = document.getElementById("myInput");
+                      filter = input.value.toUpperCase();
+                      table = document.getElementById("employees");
+                      
+        
+        
+                      tr = table.getElementsByTagName("tr");
+                    
+                      for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                          txtValue = td.textContent || td.innerText;
+                          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                          } else {
+                            tr[i].style.display = "none";
+                          }
+                        }
+                      }
+                    }
+        
+                    
+                    </script></table></button>
+        </div>
+
+    </body>
+
+
+
+
+</html>
